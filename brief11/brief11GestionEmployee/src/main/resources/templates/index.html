@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Employee Management system</title>
+<style type="text/css">
+body {
+	margin: 0;
+	color: #6a6f8c;
+	background: #c8c8c8;
+	font: 600 12px/14px "Montserrat-SemiBold";
+}
+*, :after, :before {
+	box-sizing: border-box
+}
+.ccsticky-nav {
+	display: flex;
+	width: 100%;
+	height: 65px;
+	position: fixed;
+	top: 0;
+	background-color: #A25B5B;
+}
+#logo {
+	display: inline;
+	color: #f3f3f3;
+	font: bold 'roboto';
+	font-size: 50px;
+	margin-top: 20px;
+	margin-left: 0px;
+}
+header {
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+	height: 38px;
+	text-align: left;
+}
+.styled-table {
+	border-collapse: collapse;
+	margin-top: 100px;
+	max-width: 90%;
+	width: 800px;
+	font-size: 0.9em;
+	font-family: "Montserrat-SemiBold";
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	margin-left: auto;
+	margin-right: auto;
+}
+.styled-table thead tr {
+	background-color: #A25B5B;
+	color: #ffffff;
+	text-align: center;
+}
+.styled-table th, .styled-table td {
+	padding: 12px 15px;
+	font-size: 1.5em;
+}
+.styled-table tbody tr {
+	border-bottom: 1px solid #dddddd;
+}
+.styled-table tbody tr:nth-of-type(even) {
+	background-color: #f3f3f3;
+}
+.styled-table tbody tr:last-of-type {
+	border-bottom: 2px solid #A25B5B;
+}
+.styled-table tbody tr.active-row {
+	font-weight: bold;
+	color: rgba(40, 57, 101, .9);
+	text-align: center;
+}
+.ccsticky-nav ul {
+	padding: 5px;
+	margin: 0;
+	padding-left: 20%;
+	margin-right: 20px;
+	list-style: none;
+	text-align: right;
+}
+.ccsticky-nav ul li {
+	display: inline;
+	margin: 0;
+}
+.ccsticky-nav ul li a {
+	padding: 5px;
+	transition: all 0.2s ease;
+}
+li i {
+	color: #f3f3f3;
+	font-size: 2rem;
+	height: 28px;
+	margin-top: 5px;
+	position: absolute;
+	right: 5%;
+}
+li i:hover {
+	color: #6a6f8c;
+	font-size: 2.5rem;
+	height: 28px;
+	margin-top: 5px;
+	position: absolute;
+	right: 5%;
+}
+.par {
+	position: absolute;
+	right: 10%;
+}
+.par:hover {
+	position: absolute;
+	right: 10%;
+}
+.add{
+position: absolute;
+	right: 15%;
+}
+.add:hover {
+	position: absolute;
+	right: 15%;
+}
+
+.dd{
+	color: #A25B5B;
+}
+.dd:hover {
+	color: #6a6f8c;
+}
+</style>
+<link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css"
+	rel="stylesheet">
+</head>
+<body>
+ 
+ <header>
+		<nav class="ccsticky-nav">
+			<h1 id="logo">Employee Management System</h1>
+			<ul>
+				<li><a th:href = "@{/showNewEmployeeForm}"><i class="fa fa-plus add"></i></a></li>
+				<li><i class="fa fa-cog par"></i></li>
+				<li><i class="fas fa-sign-out-alt"></i></li>
+			</ul>
+		</nav>
+	</header>
+
+<div class="container">
+			<table class="styled-table">
+				<thead>
+					<tr>
+						<th>Full Name</th>
+						<th>Email</th>
+						<th>Departement</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr th:each="employee : ${listEmployees}">
+					<td th:text="${employee.fullname}"></td>
+					<td th:text="${employee.email}"></td>
+					<td th:text="${employee.departement}"></td>
+					<td><a th:href="@{/showFormForUpdate/{id}(id=${employee.idemployee})}"><i class="fas fa-edit dd"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a th:href="@{/deleteEmployee/{id}(id=${employee.idemployee})}"><i class="fas fa-trash dd"></i>
+</a></td>
+				</tr>
+				</tbody>
+
+			</table>
+	</div>
+</body>
+</html>
