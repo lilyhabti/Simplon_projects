@@ -1,7 +1,9 @@
-package com.example.gestion.servicesImp;
+package com.example.gestion.services.Impl;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.stereotype.Service;
 
 import com.example.gestion.entities.Activite;
 import com.example.gestion.repositories.ActiviteRepository;
@@ -9,7 +11,7 @@ import com.example.gestion.services.ActiviteService;
 
 import lombok.AllArgsConstructor;
 
-
+@Service
 @AllArgsConstructor
 public class ActiviteServiceImp implements ActiviteService{
 	

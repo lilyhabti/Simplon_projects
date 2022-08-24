@@ -1,7 +1,9 @@
-package com.example.gestion.servicesImp;
+package com.example.gestion.services.Impl;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.stereotype.Service;
 
 import com.example.gestion.entities.Responsable;
 import com.example.gestion.repositories.ResponsableRepository;
@@ -9,7 +11,7 @@ import com.example.gestion.services.ResponsableService;
 
 import lombok.AllArgsConstructor;
 
-
+@Service
 @AllArgsConstructor
 public class ResponsableServiceImp implements ResponsableService {
 
@@ -22,9 +24,9 @@ public class ResponsableServiceImp implements ResponsableService {
 	}
 
 	@Override
-	public void saveResponsable(Responsable responsable) {
+	public Responsable saveResponsable(Responsable responsable) {
 		
-		this.responsableRepository.save(responsable);
+		return responsableRepository.save(responsable);
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.example.gestion.entities;
 
 import java.util.Set;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@DiscriminatorValue("RESPONSABLE")
 public class Responsable extends Users {
 	
 	private static final long serialVersionUID = 1L;

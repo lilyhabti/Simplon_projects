@@ -8,9 +8,11 @@ public interface AdministrateurService {
 
 	List<Administrateur> getAllAdmins();
 
-	void saveAdmin(Administrateur admin);
+	Administrateur saveAdmin(Administrateur admin);
 
 	Administrateur getAdminById(long id);
+	
+	Administrateur updateAdministrateur(Administrateur administrateur, long id);
 
 	void deleteAdminById(long id);
 }

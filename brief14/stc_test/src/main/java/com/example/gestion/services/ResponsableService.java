@@ -8,7 +8,7 @@ public interface ResponsableService {
 
 	List<Responsable> getAllResponsables();
 
-	void saveResponsable(Responsable responsable);
+	Responsable saveResponsable(Responsable responsable);
 
 	Responsable getResponsableById(long id);
 

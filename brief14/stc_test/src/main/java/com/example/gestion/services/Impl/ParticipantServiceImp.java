@@ -1,7 +1,9 @@
-package com.example.gestion.servicesImp;
+package com.example.gestion.services.Impl;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.stereotype.Service;
 
 import com.example.gestion.entities.Participant;
 import com.example.gestion.repositories.ParticipantRepository;
@@ -9,6 +11,8 @@ import com.example.gestion.services.ParticipantService;
 
 import lombok.AllArgsConstructor;
 
+
+@Service
 @AllArgsConstructor
 public class ParticipantServiceImp implements ParticipantService {
 	

@@ -1,7 +1,9 @@
-package com.example.gestion.servicesImp;
+package com.example.gestion.services.Impl;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.stereotype.Service;
 
 import com.example.gestion.entities.Exercice;
 import com.example.gestion.repositories.ExerciceRepository;
@@ -9,6 +11,8 @@ import com.example.gestion.services.ExerciceService;
 
 import lombok.AllArgsConstructor;
 
+
+@Service
 @AllArgsConstructor
 public class ExerciceServiceImp implements ExerciceService {
 	
