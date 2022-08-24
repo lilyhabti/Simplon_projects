@@ -48,7 +48,7 @@ public class AdministrateurController {
 		return new ResponseEntity<Administrateur>(administrateurService.getAdminById(adminId), HttpStatus.OK);
 	}
 
-	// build update employee REST API
+	// build update admin REST API
 	// http://localhost:8080/api/employees/1
 	@PutMapping("{ID_User}")
 	public ResponseEntity<Administrateur> updateAdmin(@PathVariable("ID_User") long id,

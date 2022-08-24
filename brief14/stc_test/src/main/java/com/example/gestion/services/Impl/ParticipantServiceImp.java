@@ -25,9 +25,9 @@ public class ParticipantServiceImp implements ParticipantService {
 	}
 
 	@Override
-	public void saveParticipant(Participant participant) {
+	public Participant saveParticipant(Participant participant) {
 		
-		this.participantRepository.save(participant);
+		return participantRepository.save(participant);
 	}
 
 	@Override
@@ -47,6 +47,23 @@ public class ParticipantServiceImp implements ParticipantService {
 	public void deleteParticipantById(long id) {
 		
 		this.participantRepository.deleteById(id);
+	}
+
+	@Override
+	public Participant updateParticipant(Participant participant, long id) {
+		
+		Participant existingParticipant = participantRepository.findById(id).get();
+		existingParticipant.setNom(participant.getNom());
+		existingParticipant.setPrenom(participant.getPrenom());
+		existingParticipant.setEmail(participant.getEmail());
+		existingParticipant.setLogin(participant.getLogin());
+		existingParticipant.setPassword(participant.getPassword());
+		existingParticipant.setTelephone(participant.getTelephone());
+		existingParticipant.setStructure(participant.getStructure());
+		existingParticipant.setDomaine(participant.getDomaine());
+		
+		participantRepository.save(existingParticipant);
+		return existingParticipant;
 	}
 
 }

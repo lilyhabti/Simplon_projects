@@ -10,9 +10,11 @@ public interface ExerciceService {
 
 	List<Exercice> getAllExercices();
 
-	void saveExercice(Exercice exercice);
+	Exercice saveExercice(Exercice exercice);
 
 	Exercice getExerciceById(long id);
+	
+	Exercice updateExercice(Exercice exercice, long id);
 
 	void deleteExerciceById(long id);
 }

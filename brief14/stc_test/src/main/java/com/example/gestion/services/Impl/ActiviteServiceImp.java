@@ -24,9 +24,9 @@ public class ActiviteServiceImp implements ActiviteService{
 	}
 
 	@Override
-	public void saveActivite(Activite activite) {
+	public Activite saveActivite(Activite activite) {
 		
-		this.activiteRepository.save(activite);
+		return activiteRepository.save(activite);
 	}
 
 	@Override
@@ -45,6 +45,21 @@ public class ActiviteServiceImp implements ActiviteService{
 	public void deleteActiviteById(long id) {
 		
 		this.activiteRepository.deleteById(id);
+	}
+
+	@Override
+	public Activite updateActivite(Activite activite, long id) {
+		
+		Activite existingActivite = activiteRepository.findById(id).get();
+		existingActivite.setTitre(activite.getTitre());
+		existingActivite.setDescriptif(activite.getDescriptif());
+		existingActivite.setType(activite.getType());
+		existingActivite.setDate_debut(activite.getDate_debut());
+		existingActivite.setDate_fin(activite.getDate_fin());
+		existingActivite.setEtat(activite.getEtat());
+		
+		activiteRepository.save(existingActivite);
+		return existingActivite;
 	}
 
 }

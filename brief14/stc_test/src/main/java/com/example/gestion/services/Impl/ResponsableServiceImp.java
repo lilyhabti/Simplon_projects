@@ -47,4 +47,21 @@ public class ResponsableServiceImp implements ResponsableService {
 		this.responsableRepository.deleteById(id);
 	}
 
+	@Override
+	public Responsable updateResponsable(Responsable responsable, long id) {
+		
+		Responsable existingResponsable = responsableRepository.findById(id).get();
+		existingResponsable.setNom(responsable.getNom());
+		existingResponsable.setPrenom(responsable.getPrenom());
+		existingResponsable.setEmail(responsable.getEmail());
+		existingResponsable.setLogin(responsable.getLogin());
+		existingResponsable.setPassword(responsable.getPassword());
+		existingResponsable.setTelephone(responsable.getTelephone());
+		existingResponsable.setEtat(responsable.getEtat());
+		existingResponsable.setDomaine(responsable.getDomaine());
+		existingResponsable.setType(responsable.getType());
+		responsableRepository.save(existingResponsable);
+		return existingResponsable;
+	}
+
 }

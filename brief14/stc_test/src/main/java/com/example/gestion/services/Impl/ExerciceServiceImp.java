@@ -25,9 +25,9 @@ public class ExerciceServiceImp implements ExerciceService {
 	}
 
 	@Override
-	public void saveExercice(Exercice exercice) {
+	public Exercice saveExercice(Exercice exercice) {
 		
-		this.exerciceRepository.save(exercice);
+		return exerciceRepository.save(exercice);
 	}
 
 	@Override
@@ -46,6 +46,19 @@ public class ExerciceServiceImp implements ExerciceService {
 	public void deleteExerciceById(long id) {
 		
 		this.exerciceRepository.deleteById(id);
+	}
+
+	@Override
+	public Exercice updateExercice(Exercice exercice, long id) {
+
+        Exercice existingExercice = exerciceRepository.findById(id).get();
+        existingExercice.setAnnee(exercice.getAnnee());
+        existingExercice.setDate_debut(exercice.getDate_debut());
+        existingExercice.setDate_fin(exercice.getDate_fin());
+        existingExercice.setStatut(exercice.getStatut());
+        
+        exerciceRepository.save(existingExercice);
+		return existingExercice;
 	}
 
 }
