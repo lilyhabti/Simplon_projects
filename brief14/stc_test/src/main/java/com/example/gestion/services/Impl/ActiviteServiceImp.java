@@ -57,6 +57,7 @@ public class ActiviteServiceImp implements ActiviteService{
 		existingActivite.setDate_debut(activite.getDate_debut());
 		existingActivite.setDate_fin(activite.getDate_fin());
 		existingActivite.setEtat(activite.getEtat());
+		existingActivite.setParticipants(activite.getParticipants());
 		
 		activiteRepository.save(existingActivite);
 		return existingActivite;

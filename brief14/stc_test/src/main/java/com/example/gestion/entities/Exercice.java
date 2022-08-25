@@ -30,6 +30,7 @@ public class Exercice {
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date date_debut;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date date_fin;
 	private String statut;

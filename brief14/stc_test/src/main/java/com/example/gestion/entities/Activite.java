@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,18 +33,20 @@ public class Activite {
 	private String titre;
 	private String descriptif;
 	private String type;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date date_debut;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date date_fin;
 	private String etat;
 	
 	@ManyToOne
-    @JoinColumn(name="ID_User", nullable=false)
+    @JoinColumn(name="ID_User")
     private Responsable responsable;
 	
 	@ManyToOne
-    @JoinColumn(name="ID_Exe", nullable=false)
+    @JoinColumn(name="ID_Exe")
     private Exercice exercice;
 	
 	@ManyToMany

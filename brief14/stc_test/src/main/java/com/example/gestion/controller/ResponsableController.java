@@ -36,7 +36,7 @@ public class ResponsableController {
 
 	// build get all responsables REST API
 	@GetMapping
-	public List<Responsable> getAllAdmins() {
+	public List<Responsable> getResponsables() {
 		return responsableService.getAllResponsables();
 	}
 
