@@ -1,11 +1,10 @@
 package com.example.gestion.services.Impl;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.example.gestion.entities.Responsable;
+import com.example.gestion.exception.ResourceNotFoundException;
 import com.example.gestion.repositories.ResponsableRepository;
 import com.example.gestion.services.ResponsableService;
 
@@ -31,26 +30,35 @@ public class ResponsableServiceImp implements ResponsableService {
 
 	@Override
 	public Responsable getResponsableById(long id) {
-		Optional<Responsable> optional = responsableRepository.findById(id);
-		Responsable responsable = null;
-		if (optional.isPresent()) {
-			responsable = optional.get();
-		} else {
-			throw new RuntimeException(" Responsable not found for id :: " + id);
-		}
-		return responsable;
+//		Optional<Responsable> optional = responsableRepository.findById(id);
+//		Responsable responsable = null;
+//		if (optional.isPresent()) {
+//			responsable = optional.get();
+//		} else {
+//			throw new RuntimeException(" Responsable not found for id :: " + id);
+//		}
+//		return responsable;
+		
+		return responsableRepository.findById(id).orElseThrow(() -> 
+		new ResourceNotFoundException("Responsable", "Id", id));
 	}
 
 	@Override
 	public void deleteResponsableById(long id) {
 		
-		this.responsableRepository.deleteById(id);
+		responsableRepository.findById(id).orElseThrow(() -> 
+		new ResourceNotFoundException("Responsable", "Id", id));
+		
+		responsableRepository.deleteById(id);
 	}
 
 	@Override
 	public Responsable updateResponsable(Responsable responsable, long id) {
 		
-		Responsable existingResponsable = responsableRepository.findById(id).get();
+		Responsable existingResponsable = responsableRepository.findById(id).orElseThrow(
+				() -> new ResourceNotFoundException("Responsable", "Id", id));
+		
+		
 		existingResponsable.setNom(responsable.getNom());
 		existingResponsable.setPrenom(responsable.getPrenom());
 		existingResponsable.setEmail(responsable.getEmail());

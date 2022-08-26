@@ -5,7 +5,10 @@ import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +28,7 @@ public class Participant extends Users {
 	private String domaine;
 	private String structure;
 	
-	@ManyToMany(mappedBy="participants")
+	@ManyToMany(mappedBy="participants",fetch = FetchType.EAGER)
+	@JsonIgnore
 	private List<Activite> activities = new ArrayList<>();
 }

@@ -1,7 +1,6 @@
 package com.example.gestion.entities;
 
-import java.util.Set;
-
+import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -26,5 +25,6 @@ public class Responsable extends Users {
 	private String etat;
 
 	@OneToMany(mappedBy="responsable")
-    private Set<Activite> activities;
+//	@JsonIgnore
+    private List<Activite> activities;
 }

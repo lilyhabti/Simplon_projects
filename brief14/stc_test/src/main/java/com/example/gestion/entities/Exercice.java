@@ -1,8 +1,8 @@
 package com.example.gestion.entities;
 
 import java.util.Date;
-import java.util.Set;
-
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +12,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,6 +34,9 @@ public class Exercice {
 	private Date date_fin;
 	private String statut;
 	
-	@OneToMany(mappedBy="exercice")
-    private Set<Activite> activities;
+	
+	@OneToMany(mappedBy="exercice", cascade = CascadeType.ALL)
+//	@JsonIgnore
+    private List<Activite> activities;
+	
 }
