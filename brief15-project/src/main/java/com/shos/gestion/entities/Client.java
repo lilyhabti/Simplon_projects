@@ -1,8 +1,8 @@
 package com.shos.gestion.entities;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -22,12 +22,17 @@ import lombok.NoArgsConstructor;
 @Table(name="clients")
 public class Client extends AppUser {
 
-	 @OneToMany(mappedBy = "client",cascade = CascadeType.ALL,orphanRemoval = true)
-     private List<Command> commands = new ArrayList<>();
+	 @OneToMany(mappedBy = "client",cascade = CascadeType.ALL)
+     private Set<Command> commands = new HashSet<>();
 
 	public Client(Long id, String nom, String prenom, String username, String password, String email,
-			Collection<AppRole> appRoles, List<Command> commands) {
+			Collection<AppRole> appRoles, Set<Command> commands) {
 		super(id, nom, prenom, username, password, email, appRoles);
 		this.commands = commands;
+	}
+
+	public Client(Long id, String nom, String prenom, String username, String password, String email,
+			Collection<AppRole> appRoles) {
+		super(id, nom, prenom, username, password, email, appRoles);
 	}
 }

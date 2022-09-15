@@ -46,6 +46,7 @@ public class CategorieServiceImpl implements CategorieService {
 		existingCategorie.setName(categorie.getName());
 		existingCategorie.setDescriptif(categorie.getDescriptif());
 		existingCategorie.setProduits(categorie.getProduits());
+		existingCategorie.setCategorie_id(categorie.getCategorie_id());
 		
 		return categorieRepository.save(existingCategorie);
 	}

@@ -2,6 +2,7 @@ package com.shos.gestion.service.impl;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.shos.gestion.entities.Admin;
@@ -18,14 +19,15 @@ public class AccountServiceImpl implements AccountService {
 	private AppRoleRepository appRoleRepository;
 	private AppUserRepository appUserRepository;
 	private AdminRepository adminRepository;
-
+	private PasswordEncoder  passwordEncoder;
 
 	public AccountServiceImpl(AppRoleRepository appRoleRepository, AppUserRepository appUserRepository,
-			AdminRepository adminRepository) {
+			AdminRepository adminRepository, PasswordEncoder passwordEncoder) {
 		super();
 		this.appRoleRepository = appRoleRepository;
 		this.appUserRepository = appUserRepository;
 		this.adminRepository = adminRepository;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	@Override
@@ -37,6 +39,8 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public Admin addNewAdmin(Admin admin) {
 		
+		String pw = admin.getPassword();
+		admin.setPassword(passwordEncoder.encode(pw));
 		AppRole appRole = appRoleRepository.findByRoleName("ADMIN");
 		admin.getAppRoles().add(appRole);
 		return adminRepository.save(admin);

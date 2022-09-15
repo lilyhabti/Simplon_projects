@@ -1,7 +1,7 @@
 package com.shos.gestion.entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -27,7 +27,7 @@ public class Categorie {
 	private Long categorie_id;
 	private String name;
 	private String descriptif;
-	
-	@OneToMany(mappedBy = "categorie",cascade = CascadeType.ALL,orphanRemoval = true)
-	private List<Produit> produits = new ArrayList<>();
+//	@JsonIgnore
+	@OneToMany(mappedBy = "categorie",cascade = CascadeType.ALL)
+	private Set<Produit> produits = new HashSet<>();
 }

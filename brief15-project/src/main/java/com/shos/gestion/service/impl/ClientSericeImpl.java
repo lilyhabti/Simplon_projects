@@ -2,12 +2,12 @@ package com.shos.gestion.service.impl;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.shos.gestion.entities.AppRole;
 import com.shos.gestion.entities.AppUser;
 import com.shos.gestion.entities.Client;
-import com.shos.gestion.exception.ResourceNotFoundException;
 import com.shos.gestion.repositories.AppRoleRepository;
 import com.shos.gestion.repositories.AppUserRepository;
 import com.shos.gestion.repositories.ClientRepository;
@@ -18,13 +18,15 @@ public class ClientSericeImpl implements ClientService {
 	private ClientRepository clientRepository;
 	private AppUserRepository appUserRepository;
 	private AppRoleRepository appRoleRepository;
+	private PasswordEncoder  passwordEncoder;
 
 	public ClientSericeImpl(ClientRepository clientRepository, AppUserRepository appUserRepository,
-			AppRoleRepository appRoleRepository) {
+			AppRoleRepository appRoleRepository, PasswordEncoder passwordEncoder) {
 		super();
 		this.clientRepository = clientRepository;
 		this.appUserRepository = appUserRepository;
 		this.appRoleRepository = appRoleRepository;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 
@@ -41,13 +43,14 @@ public class ClientSericeImpl implements ClientService {
 		String username = client.getUsername();
 		AppUser user= appUserRepository.findByUsername(username);
 		if(user==null) {
+			String pw = client.getPassword();
+			client.setPassword(passwordEncoder.encode(pw));
 			AppRole appRole = appRoleRepository.findByRoleName("CLIENT");
 			client.getAppRoles().add(appRole);
 			return clientRepository.save(client);
 		}else {
             
-			return clientRepository.findById(client.getId()).orElseThrow(() -> 
-			new ResourceNotFoundException("Client", "Id", client.getId()));
+			throw new RuntimeException("Username invalid");
 		}
 		
 	}

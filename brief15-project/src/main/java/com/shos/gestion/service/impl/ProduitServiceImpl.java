@@ -47,7 +47,7 @@ public class ProduitServiceImpl implements ProduitService {
 		existingProduit.setCountry(produit.getCountry());
 		existingProduit.setPrix(produit.getPrix());
 		existingProduit.setOrders(produit.getOrders());
-		existingProduit.setCategorie(produit.getCategorie());
+		existingProduit.setCategorie_id(produit.getCategorie_id());
 		
 		return produitRepository.save(existingProduit);
 	}
