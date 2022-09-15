@@ -35,19 +35,13 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public Admin addNewUser(Admin admin) {
+	public Admin addNewAdmin(Admin admin) {
 		
+		AppRole appRole = appRoleRepository.findByRoleName("ADMIN");
+		admin.getAppRoles().add(appRole);
 		return adminRepository.save(admin);
 	}
 
-	@Override
-	public void addRoleToUser(String username, String roleName) {
-		
-		AppUser appUser = appUserRepository.findByUsername(username);
-		AppRole appRole = appRoleRepository.findByRoleName(roleName);
-		appUser.getAppRoles().add(appRole);
-		appUserRepository.save(appUser);
-	}
 
 	@Override
 	public AppUser loadUserByUsername(String username) {

@@ -9,8 +9,7 @@ import com.shos.gestion.entities.AppUser;
 public interface AccountService {
 	
 	AppRole addNewRole(AppRole appRole);
-	Admin addNewUser(Admin admin);
-	void addRoleToUser(String username,String roleName);
+	Admin addNewAdmin(Admin admin);
 	AppUser loadUserByUsername(String username);
 	List<AppUser> listUsers();
 

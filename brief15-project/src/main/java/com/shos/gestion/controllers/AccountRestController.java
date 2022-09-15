@@ -12,8 +12,6 @@ import com.shos.gestion.entities.AppRole;
 import com.shos.gestion.entities.AppUser;
 import com.shos.gestion.service.AccountService;
 
-import lombok.Data;
-
 @RestController
 public class AccountRestController {
 	
@@ -29,10 +27,10 @@ public class AccountRestController {
 		
 		return accountService.listUsers();
 	}
-	@PostMapping(path = "/users")
+	@PostMapping(path = "/addAdmin")
 	public Admin saveUser(@RequestBody Admin admin) {
 		
-		return accountService.addNewUser(admin);
+		return accountService.addNewAdmin(admin);
 	}
 
 	@PostMapping(path = "/roles")
@@ -40,16 +38,10 @@ public class AccountRestController {
 		
 		return accountService.addNewRole(appRole);
 	}
-	
-	@PostMapping(path = "/addRoleToUser")
-	public void addRoleToUser(@RequestBody RoleUserForm roleUserForm ) {
-		
-		accountService.addRoleToUser(roleUserForm.getUsername(),roleUserForm.getRoleName());
-	}
 }
 
-@Data
-class RoleUserForm {
-	private String username;
-	private String roleName;
-}
+//@Data
+//class RoleUserForm {
+//	private String username;
+//	private String roleName;
+//}
